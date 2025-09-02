@@ -1,6 +1,7 @@
 import sys
 from typing import Any
 import logging
+import logger
 
 def error_message_detail(error:Exception) -> str:
     _, _, exc_tb = sys.exc_info()
@@ -18,9 +19,17 @@ class customException(Exception):
         formatted_message = error_message_detail(error)
         super().__init__(formatted_message)
         self.error_message = formatted_message
+        logging.error(self.error_message)
 
 
     def __str__(self) -> str:
         return self.error_message 
+    
+
+
+        
+    
+
+
 
 
