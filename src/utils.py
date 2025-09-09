@@ -5,6 +5,8 @@ import pandas as pd
 from src.exception import customException
 import dill
 from sklearn.metrics import r2_score
+from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import RandomizedSearchCV
 
 def save_obj(file_path,obj):
     try:
@@ -18,14 +20,28 @@ def save_obj(file_path,obj):
         raise customException(e)  
 
 
-def evaluateModel(x_train,y_train,x_test,y_test,models):
+def evaluateModel(x_train,y_train,x_test,y_test,models,params):
     try:
         report = {}
 
         for i in range(len(list(models))):
             model = list(models.values())[i]
+            para = params[list(models.keys())[i]]
 
+            search = RandomizedSearchCV(
+                                        estimator=model,
+                                        param_distributions=para,
+                                        n_iter=10,        # only 10 random combos
+                                        cv=5,
+                                        scoring='r2',
+                                        n_jobs=1,
+                                        random_state=42
+                                    )
+            search.fit(x_train,y_train)
+            
+            model.set_params(**search.best_params_)
             model.fit(x_train,y_train)
+            
 
             y_train_pred = model.predict(x_train)
             y_test_pred = model.predict(x_test)
