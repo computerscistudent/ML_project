@@ -1,4 +1,4 @@
-from flask import Flask , render_template, request
+from flask import Flask , render_template, request, url_for, redirect
 import pickle
 
 import numpy as np
@@ -34,7 +34,22 @@ def home():
 
         predicted_pipeline = PredictionPipeline()
         results = predicted_pipeline.predict(pred_df)
-        return render_template("home.html",result=results[0])
+        results = np.clip(results, 0, 100)
+        return redirect(url_for("result",result=round(results[0],2)))
+    
+
+@app.route('/result/<float:result>',methods=['GET','POST'])
+def result(result):
+    res = ''
+    if result>=90:
+        res = f'You are pass with awsome {result} Marks'
+    elif result <90 and result>=70:
+        res = f'pass with {result} Marks keep going and improving!!'
+    elif result <70 and result >=45:
+        res = f'You are pass with ordinary {result} Marks practice hard'
+    else:
+        res = f'you are fail with unremarkable {result} Marks '    
+    return render_template('result.html',result = res)   
 
 
 if __name__ == "__main__":

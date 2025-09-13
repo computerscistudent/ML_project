@@ -1,1 +1,92 @@
-<h1>welcome to my ml project!!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, rgb(1, 1, 70), rgb(0, 0, 40), rgb(10, 10, 100));
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .about p {
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: white;
+        }
+
+         .heading h1 {
+            margin-bottom: 5rem;
+            color: white;
+        }
+
+        .button{
+            margin: 5em;
+        }
+        .button a:hover{
+            background-color: rgb(12, 47, 35);
+        }
+
+        .button a{
+            text-decoration: none;
+            border: 2px solid black;
+            padding: 5px;
+            color: white;
+            background-color: rgb(16, 226, 156);
+            border-radius: 5px;
+        }
+
+        @media (max-width: 600px) {
+    .heading h1 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .about p {
+        font-size: 0.9rem;
+    }
+
+    .button {
+        margin: 2em;
+    }
+
+    .button a {
+        padding: 10px 20px; /* bigger tap area */
+        font-size: 1rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <h1 id="head">Welcome to my ML project!!</h1>
+        </div>
+
+        <div class="about">
+            <p id="para">This project is a Student Exam Performance Predictor. It takes in basic details about a student—like their gender, family background, lunch type, test preparation, and their reading and writing scores—and then uses a machine learning model to predict how well the student is likely to perform in math. In simple words, you give it some student information, and it will estimate their expected math score. This can help teachers, parents, and students understand performance patterns and identify areas where extra support might be needed.</p>
+        </div>
+        
+        <div class="button">
+            <a id="anch" href="/home" role="button">Fill the form</a>
+        </div>
+    </div>
+</body>
+</html>
